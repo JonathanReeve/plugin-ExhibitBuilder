@@ -12,7 +12,7 @@ function exhibit_builder_install()
       `id` int(10) unsigned NOT NULL auto_increment,
       `title` varchar(255) collate utf8_unicode_ci default NULL,
       `description` text collate utf8_unicode_ci,
-      `preview_image` text collate utf8_unicode_ci default NULL,
+      `preview_item_id` int unsigned default NULL,
       `credits` text collate utf8_unicode_ci,
       `featured` tinyint(1) default '0',
       `public` tinyint(1) default '0',
@@ -104,7 +104,7 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
         $db->query($sql);
 
 	//alter the exhibits table to include column for adding associated images
-        $sql = "ALTER TABLE `{$db->prefix}exhibits` ADD COLUMN `preview_image` INT UNSIGNED NULL AFTER `description` ";
+        $sql = "ALTER TABLE `{$db->prefix}exhibits` ADD COLUMN `preview_item_id` INT UNSIGNED NULL AFTER `description` ";
         $db->query($sql);
 
         //alter the section_pages table into revised exhibit_pages table
